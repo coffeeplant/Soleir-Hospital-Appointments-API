@@ -11,14 +11,19 @@ datasource:
       connection-timeout: 2000
       initialization-fail-timeout: 0
   hospdb:
-    #driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:8889/hospitaldb?autoReconnect=true&useSSL=false
-    username: soleiruser
+    driverClassName: com.mysql.jdbc.Driver
+     #url: jdbc:mysql://%s:%s/%s[?verifyServerCertificate=true&useSSL=true&requireSSL=true]",hospitaldb-soleir.mysql.database.azure.com,3306,hospdb"; myDbConn = DriverManager.getConnection(url, coffeeplant@hospitaldb-soleir, Password2;
+#
+    url: jdbc:mysql://hospitaldb-soleir.mysql.database.azure.com:3306/hospdb?serverTimezone=UTC
+    username: coffeeplant@hospitaldb-soleir
     password: Password2
+
 #passwords to be made more complex
 spring:
   #debug: false (not sure if debug is off or on by default, can't find an example
   jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
     properties:
       hibernate:
         show_sql: true
@@ -45,3 +50,5 @@ graphql:
     # Sets if asynchronous operations are supported for GraphQL requests. If not specified defaults to true.
     async-mode-enabled: true
 
+server:
+  port : 8080
