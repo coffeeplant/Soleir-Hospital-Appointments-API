@@ -1,0 +1,57 @@
+type SoleirUser{
+    userID: Int
+    soleirID: String
+    email: String
+    appointment: [Appointment]
+    token: String
+}
+
+type Staff{
+    staffID: String
+    firstname: String
+    surname: String
+    position: String
+}
+
+type Appointment{
+    apptID: String
+    apptdatetime: String
+    clinic: String
+    note: String
+    staff: Staff
+}
+
+input AppointmentNoteInput{
+    apptID: String
+    userID: Int
+    note: String
+}
+
+input AuthData{
+    email: String!
+    soleirID: String!
+}
+
+type Query{
+    allUsers: [SoleirUser]
+    userByID (userID: Int): SoleirUser
+    allAppointments: [Appointment]
+    apptByApptIDUserID (fkuserID: Int, apptID: String): Appointment
+}
+
+type Mutation{
+    editNote(input: AppointmentNoteInput): Appointment
+    signinUser(input: AuthData): SoleirUser
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+#It is noted that storing passwords with the connection URL is not recommended.
+#It is recommended to store them in another file that has restricted access
+datasource:
+  soleirdb:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://dbserver1849.database.windows.net:1433;database=SoleirDB1;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;
+    username: soleiruser@dbserver1849
+    password: Password2
+    platform: mssql
+    hikari:
+      connection-timeout: 2000
+      initialization-fail-timeout: 0
+  hospdb:
+    #driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:8889/hospitaldb?autoReconnect=true&useSSL=false
+    username: soleiruser
+    password: Password2
+#passwords to be made more complex
+spring:
+  #debug: false (not sure if debug is off or on by default, can't find an example
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        enable_lazy_load_no_trans: true
+
+
+
+graphql:
+  tools:
+    introspection-enabled: false
+  servlet:
+    # Sets if GraphQL servlet should be created and exposed. If not specified defaults to "true".
+    enabled: true
+    # Sets the path where GraphQL servlet will be exposed. If not specified defaults to "/graphql"
+    mapping: /graphql/**
+    cors-enabled: true
+    cors:
+      allowed-origins: http://127.0.0.1:8081
+      allowed-methods: GET, HEAD, POST
+    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
+    exception-handlers-enabled: true
+    context-setting: PER_REQUEST_WITH_INSTRUMENTATION
+    # Sets if asynchronous operations are supported for GraphQL requests. If not specified defaults to true.
+    async-mode-enabled: true
+
