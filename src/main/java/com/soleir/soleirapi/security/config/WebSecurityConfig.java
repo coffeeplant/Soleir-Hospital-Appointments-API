@@ -1,5 +1,6 @@
 package com.soleir.soleirapi.security.config;
 
+//import com.soleir.soleirapi.security.jwt.CustomAuthenticationProvider;
 import com.soleir.soleirapi.security.jwt.JWTFilter;
 import com.soleir.soleirapi.security.config.SecurityProperties;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +21,14 @@ import org.springframework.security.web.authentication.preauth.RequestAttributeA
 @RequiredArgsConstructor
 @EnableConfigurationProperties(SecurityProperties.class)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     private final AuthenticationProvider authenticationProvider;
     private final JWTFilter jwtFilter;
 
     //passes authentication provider bean from security config file
     @Override
     protected void configure(AuthenticationManagerBuilder auth){
+
         auth.authenticationProvider(authenticationProvider);
     }
     //handles the http request from the client

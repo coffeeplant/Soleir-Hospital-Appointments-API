@@ -3,10 +3,13 @@ package com.soleir.soleirapi.security.config;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.soleir.soleirapi.service.SoleirUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -38,14 +41,14 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder(10);
     }
     //from https://dimitr.im/graphql-spring-security, took it out and made customer authentication provider class
-//    @Bean
-//    //configured for user credentials stored in database
-//    public AuthenticationProvider authenticationProvider(SignInUserService signInUserService, PasswordEncoder passwordEncoder){
-//        logger.info("Entering authenticationProvider");
-//        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-//        provider.setUserDetailsService(signInUserService);
-//        provider.setPasswordEncoder(passwordEncoder);
-//        return provider;
-//    }
+    @Bean
+    //configured for user credentials stored in database
+    public AuthenticationProvider authenticationProvider(SoleirUserService soleirUserService, PasswordEncoder passwordEncoder){
+        logger.info("Entering authenticationProvider");
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(soleirUserService);
+        provider.setPasswordEncoder(passwordEncoder);
+        return provider;
+    }
 
 }

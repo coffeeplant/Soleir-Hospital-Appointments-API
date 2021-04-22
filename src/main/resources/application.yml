@@ -22,6 +22,7 @@ datasource:
 spring:
   #debug: false (not sure if debug is off or on by default, can't find an example
   jpa:
+    #compares annotations with schema
     hibernate.ddl-auto: update
     generate-ddl: true
     properties:
