@@ -48,24 +48,27 @@ public class SoleirUserService implements UserDetailsService {
 
     @Override
     public JWTSoleirUserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        logger.info("Entering service.loadUserByName");
         return repository
                 .findByEmail(email)
                 .map(user -> getUserDetails(user, getToken(user)))
-                .orElseThrow(() -> new UsernameNotFoundException("Username or password didn''t match"));
+                .orElseThrow(() -> new UsernameNotFoundException("Username or password didn't match"));
     }
 
     @Transactional
     public JWTSoleirUserDetails loadUserByToken(String token){
+        logger.info("Entering service.loadUserByToken");
         return getDecodedToken(token)
                 //fetches user info and sets up UserDetails object
                 .map(DecodedJWT::getSubject)
                 .flatMap(repository::findByEmail)
                 .map(user -> getUserDetails(user, token))
-                .orElseThrow(BadTokenException::new);
+                .orElseThrow(() -> new BadTokenException("Invalid token"));
 
     }
 
     public SoleirUser getCurrentUser() {
+        logger.info("Entering service.getCurrentUser");
         return Optional
                 .ofNullable(SecurityContextHolder.getContext())
                 .map(SecurityContext::getAuthentication)
@@ -76,7 +79,7 @@ public class SoleirUserService implements UserDetailsService {
 
     @Transactional
     public String getToken(SoleirUser soleirUser){
-        logger.info("Entering getToken");
+        logger.info("Entering service.getToken");
         Instant now = Instant.now();
         Instant expiry = Instant.now().plus(properties.getTokenExpiration());
         return JWT
@@ -90,6 +93,7 @@ public class SoleirUserService implements UserDetailsService {
 
 
     public boolean isAuthenticated() {
+        logger.info("service.isAuthenicated");
         return Optional
                 .ofNullable(SecurityContextHolder.getContext())
                 .map(SecurityContext::getAuthentication)
@@ -103,16 +107,20 @@ public class SoleirUserService implements UserDetailsService {
     }
 
     private JWTSoleirUserDetails getUserDetails(SoleirUser soleirUser, String token) {
+        logger.info("Entering service.getUserDetails");
         return JWTSoleirUserDetails
                 .builder()
                 .email(soleirUser.getEmail())
-                .soleirID(soleirUser.getSoleirID())
+                //this encodes the soleirID on the db with the same password encoder , this is not
+                //safe, bcrypt needs to be used to hash the passwords in the database
+                .soleirID(passwordEncoder.encode(soleirUser.getSoleirID()))
                 .token(token)
                 .build();
     }
 
     //verifies the token using the JWTVerifier in the security config class
     private Optional<DecodedJWT> getDecodedToken(String token) {
+        logger.info("Entering service.getDecodedToken");
         try{
             return Optional.of(verifier.verify(token));
         }catch(JWTVerificationException e){

@@ -33,6 +33,7 @@ public class JWTFilter extends OncePerRequestFilter {
     //parses token from the header
     @Override
     protected void doFilterInternal(HttpServletRequest request,HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException{
+        logger.info("Entering JWTFiler.doFilterInternal");
         getToken(request)
                 .map(service::loadUserByToken)
                 //2.wrapping in pre authenticated authentication token class using implementation class
@@ -48,6 +49,7 @@ public class JWTFilter extends OncePerRequestFilter {
     }//end of doFilterInternal
 
     private Optional<String> getToken(HttpServletRequest request) {
+        logger.info("Entering JWTFiler.getToken");
         return Optional
                 .ofNullable(request.getHeader(AUTHORIZATION_HEADER))
                 .filter(not(String::isEmpty))

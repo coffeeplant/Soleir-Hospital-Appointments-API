@@ -29,6 +29,7 @@ public class SoleirUserMutableResolver implements GraphQLMutationResolver {
     //this annotation means the method can be used when user is not logged in yet
     @PreAuthorize("isAnonymous()")
     public SoleirUser signinUser(AuthData authData) throws Exception {
+        logger.info("Entering mutableResolver.signInUser");
         UsernamePasswordAuthenticationToken credentials = new UsernamePasswordAuthenticationToken(authData.getEmail(), authData.getSoleirID());
         try {
             SecurityContextHolder.getContext().setAuthentication(authenticationProvider.authenticate(credentials));
