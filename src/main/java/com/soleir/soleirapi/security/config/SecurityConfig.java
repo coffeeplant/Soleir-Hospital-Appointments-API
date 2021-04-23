@@ -21,14 +21,14 @@ public class SecurityConfig {
 
     @Bean
     public Algorithm jwtAlgorithm(SecurityProperties properties){
-        logger.info("Entering securityconfig.jwtAlgorithm");
+        //logger.info("Entering securityconfig.jwtAlgorithm");
         return Algorithm.HMAC256(properties.getTokenSecret());
     }
 
     //verifies if token has correct algorithm and if issuer is correct
     @Bean
     public JWTVerifier verifier(SecurityProperties properties, Algorithm algorithm){
-        logger.info("Entering verifier");
+        //logger.info("Entering verifier");
         return JWT
                 .require(algorithm)
                 .withIssuer(properties.getTokenIssuer())
@@ -37,17 +37,17 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder(){
-        logger.info("Entering securityconfig.passwordEncoder");
+        //logger.info("Entering securityconfig.passwordEncoder");
         return new BCryptPasswordEncoder(10);
     }
     //from https://dimitr.im/graphql-spring-security, took it out and made customer authentication provider class
     @Bean
     //configured for user credentials stored in database
     public AuthenticationProvider authenticationProvider(SoleirUserService soleirUserService, PasswordEncoder passwordEncoder){
-        logger.info("Entering securityconfig.authenticationProvider");
+        //logger.info("Entering securityconfig.authenticationProvider");
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(soleirUserService);
-        logger.info("Entering securityconfig. provider.setPasswordEncoder:");
+        //logger.info("Entering securityconfig. provider.setPasswordEncoder:");
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }

@@ -5,45 +5,45 @@ datasource:
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://dbserver1849.database.windows.net:1433;database=SoleirDB1;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;
     username: soleiruser@dbserver1849
-    password: Password2
+    password: Elementshow859nature6863wife27now
     platform: mssql
     hikari:
       connection-timeout: 2000
       initialization-fail-timeout: 0
   hospdb:
-    driverClassName: com.mysql.jdbc.Driver
-     #url: jdbc:mysql://%s:%s/%s[?verifyServerCertificate=true&useSSL=true&requireSSL=true]",hospitaldb-soleir.mysql.database.azure.com,3306,hospdb"; myDbConn = DriverManager.getConnection(url, coffeeplant@hospitaldb-soleir, Password2;
-#
+    #driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://hospitaldb-soleir.mysql.database.azure.com:3306/hospdb?serverTimezone=UTC
     username: coffeeplant@hospitaldb-soleir
-    password: Password2
+    password: Single60symbol12shop6570ofgas60
 
 #passwords to be made more complex
 spring:
   #debug: false (not sure if debug is off or on by default, can't find an example
   jpa:
-    #compares annotations with schema
-    hibernate.ddl-auto: update
-    generate-ddl: true
+    #compares annotations with schema, these are commented out as was only necessary when the hospital db wasn't mapping to the entities
+    #hibernate.ddl-auto: update
+    #generate-ddl: true
     properties:
+      #database queries may be performed during view rendering by default, set to false to stop this
+      open-in-view: false
       hibernate:
         show_sql: true
         format_sql: true
         enable_lazy_load_no_trans: true
 
-
-
 graphql:
   tools:
-    introspection-enabled: false
+    introspection-enabled: true
   servlet:
     # Sets if GraphQL servlet should be created and exposed. If not specified defaults to "true".
     enabled: true
     # Sets the path where GraphQL servlet will be exposed. If not specified defaults to "/graphql"
-    mapping: /graphql/**
+    mapping: /graphql/*
+    #tried setting this to false to resolve front-end CORS issue but did not work
     cors-enabled: true
     cors:
-      allowed-origins: http://127.0.0.1:8081
+      #allowed origin set to front-end also not working
+      allowed-origins: /grapqhl/**
       allowed-methods: GET, HEAD, POST
     # if you want to @ExceptionHandler annotation for custom GraphQLErrors
     exception-handlers-enabled: true

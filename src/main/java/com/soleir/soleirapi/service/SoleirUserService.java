@@ -48,7 +48,7 @@ public class SoleirUserService implements UserDetailsService {
 
     @Override
     public JWTSoleirUserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        logger.info("Entering service.loadUserByName");
+        //logger.info("Entering service.loadUserByName");
         return repository
                 .findByEmail(email)
                 .map(user -> getUserDetails(user, getToken(user)))
@@ -57,7 +57,7 @@ public class SoleirUserService implements UserDetailsService {
 
     @Transactional
     public JWTSoleirUserDetails loadUserByToken(String token){
-        logger.info("Entering service.loadUserByToken");
+        //logger.info("Entering service.loadUserByToken");
         return getDecodedToken(token)
                 //fetches user info and sets up UserDetails object
                 .map(DecodedJWT::getSubject)
@@ -68,7 +68,7 @@ public class SoleirUserService implements UserDetailsService {
     }
 
     public SoleirUser getCurrentUser() {
-        logger.info("Entering service.getCurrentUser");
+        //logger.info("Entering service.getCurrentUser");
         return Optional
                 .ofNullable(SecurityContextHolder.getContext())
                 .map(SecurityContext::getAuthentication)
@@ -79,7 +79,7 @@ public class SoleirUserService implements UserDetailsService {
 
     @Transactional
     public String getToken(SoleirUser soleirUser){
-        logger.info("Entering service.getToken");
+        //logger.info("Entering service.getToken");
         Instant now = Instant.now();
         Instant expiry = Instant.now().plus(properties.getTokenExpiration());
         return JWT
@@ -93,7 +93,7 @@ public class SoleirUserService implements UserDetailsService {
 
 
     public boolean isAuthenticated() {
-        logger.info("service.isAuthenicated");
+        //logger.info("service.isAuthenticated");
         return Optional
                 .ofNullable(SecurityContextHolder.getContext())
                 .map(SecurityContext::getAuthentication)
@@ -107,7 +107,7 @@ public class SoleirUserService implements UserDetailsService {
     }
 
     private JWTSoleirUserDetails getUserDetails(SoleirUser soleirUser, String token) {
-        logger.info("Entering service.getUserDetails");
+        //logger.info("Entering service.getUserDetails");
         return JWTSoleirUserDetails
                 .builder()
                 .email(soleirUser.getEmail())
@@ -120,7 +120,7 @@ public class SoleirUserService implements UserDetailsService {
 
     //verifies the token using the JWTVerifier in the security config class
     private Optional<DecodedJWT> getDecodedToken(String token) {
-        logger.info("Entering service.getDecodedToken");
+       // logger.info("Entering service.getDecodedToken");
         try{
             return Optional.of(verifier.verify(token));
         }catch(JWTVerificationException e){

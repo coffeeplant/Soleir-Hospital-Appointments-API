@@ -6,7 +6,9 @@ import graphql.kickstart.tools.GraphQLResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @Component
 @RequiredArgsConstructor
 public class SoleirUserResolver implements GraphQLResolver <SoleirUser> {

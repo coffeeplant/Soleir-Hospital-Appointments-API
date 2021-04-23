@@ -9,12 +9,14 @@ import graphql.schema.DataFetchingFieldSelectionSet;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.criteria.Fetch;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import java.util.NoSuchElementException;
 
+@CrossOrigin
 @Component
 public class SoleirUserQueryResolver implements GraphQLQueryResolver {
 
@@ -25,13 +27,12 @@ public class SoleirUserQueryResolver implements GraphQLQueryResolver {
     }
 
     @PreAuthorize("isAuthenticated()")
-    //@PreAuthorize("isAnonymous()")
     public Iterable<SoleirUser> allUsers(){
         return repository.findAll();
     }
 
+    @CrossOrigin
     @PreAuthorize("isAuthenticated()")
-    //@PreAuthorize("isAnonymous()")
     public SoleirUser userByID(Integer id, DataFetchingEnvironment environment) {
         Specification<SoleirUser> spec = byId(id);
         DataFetchingFieldSelectionSet s = environment.getSelectionSet();

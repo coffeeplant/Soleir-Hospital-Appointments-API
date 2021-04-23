@@ -16,7 +16,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @Component
 @RequiredArgsConstructor
 public class SoleirUserMutableResolver implements GraphQLMutationResolver {
@@ -29,7 +31,7 @@ public class SoleirUserMutableResolver implements GraphQLMutationResolver {
     //this annotation means the method can be used when user is not logged in yet
     @PreAuthorize("isAnonymous()")
     public SoleirUser signinUser(AuthData authData) throws Exception {
-        logger.info("Entering mutableResolver.signInUser");
+        //logger.info("Entering mutableResolver.signInUser");
         UsernamePasswordAuthenticationToken credentials = new UsernamePasswordAuthenticationToken(authData.getEmail(), authData.getSoleirID());
         try {
             SecurityContextHolder.getContext().setAuthentication(authenticationProvider.authenticate(credentials));

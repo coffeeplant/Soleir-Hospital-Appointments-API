@@ -1,6 +1,5 @@
 package com.soleir.soleirapi.security.jwt;
 
-import com.soleir.soleirapi.security.config.SecurityConfig;
 import lombok.Builder;
 import lombok.Getter;
 import org.slf4j.Logger;

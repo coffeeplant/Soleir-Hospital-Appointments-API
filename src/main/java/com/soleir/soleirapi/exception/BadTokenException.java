@@ -8,8 +8,6 @@ import java.util.List;
 
 public class BadTokenException extends RuntimeException implements GraphQLError{
 
-   // private static final long serialVersionUID = 158136221282852553L;
-
     public BadTokenException(String message){
         super(message);
     }

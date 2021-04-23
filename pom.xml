@@ -61,7 +61,7 @@
       <groupId>org.projectlombok</groupId>  
       <artifactId>lombok</artifactId> 
     </dependency>  
-    <!--Runs configuration classes that are needed for multi-database connections-->  
+    <!--Runs configuration classes that are needed for multi-database connections and security-->
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-configuration-processor</artifactId>  
@@ -107,36 +107,37 @@
       <artifactId>graphql-java-tools</artifactId>  
       <version>11.0.0</version> 
     </dependency>  
-    <!--Runs GrpahiQL for testing at /graphql, should be turned off for production-->  
-    <dependency> 
-      <groupId>com.graphql-java-kickstart</groupId>  
-      <artifactId>graphiql-spring-boot-starter</artifactId>  
-      <version>11.0.0</version> 
-    </dependency>  
-    <!--FOR TESTING-->  
-    <dependency> 
-      <groupId>com.graphql-java-kickstart</groupId>  
-      <artifactId>graphql-spring-boot-starter-test</artifactId>  
-      <version>11.0.0</version>  
-      <scope>test</scope> 
-    </dependency>  
-    <dependency> 
-      <groupId>org.springframework.boot</groupId>  
-      <artifactId>spring-boot-starter-test</artifactId>  
-      <scope>test</scope> 
-    </dependency>  
-    <dependency> 
-      <groupId>org.springframework.security</groupId>  
-      <artifactId>spring-security-test</artifactId>  
-      <scope>test</scope> 
-    </dependency> 
+    <!--Runs GraphiQL for testing at /graphql, should be turned off for production-->
+<!--    <dependency> -->
+<!--      <groupId>com.graphql-java-kickstart</groupId>  -->
+<!--      <artifactId>graphiql-spring-boot-starter</artifactId>  -->
+<!--      <version>11.0.0</version> -->
+<!--    </dependency>  -->
+    <!--FOR TESTING-Turned off for production-->
+<!--    <dependency> -->
+<!--      <groupId>com.graphql-java-kickstart</groupId>  -->
+<!--      <artifactId>graphql-spring-boot-starter-test</artifactId>  -->
+<!--      <version>11.0.0</version>  -->
+<!--      <scope>test</scope> -->
+<!--    </dependency>  -->
+<!--    <dependency> -->
+<!--      <groupId>org.springframework.boot</groupId>  -->
+<!--      <artifactId>spring-boot-starter-test</artifactId>  -->
+<!--      <scope>test</scope> -->
+<!--    </dependency>  -->
+<!--    <dependency> -->
+<!--      <groupId>org.springframework.security</groupId>  -->
+<!--      <artifactId>spring-security-test</artifactId>  -->
+<!--      <scope>test</scope> -->
+<!--    </dependency> -->
   </dependencies>  
   <build> 
     <plugins> 
       <plugin> 
         <groupId>org.springframework.boot</groupId>  
         <artifactId>spring-boot-maven-plugin</artifactId> 
-      </plugin>  
+      </plugin>
+      <!--enables deployment to azure-->
       <plugin> 
         <groupId>com.microsoft.azure</groupId>  
         <artifactId>azure-webapp-maven-plugin</artifactId>  
@@ -146,7 +147,7 @@
           <resourceGroup>Soleir</resourceGroup>  
           <appName>Soleir-API</appName>
           <region>westeurope</region>
-          <pricingTier>F1</pricingTier>  
+          <pricingTier>B1</pricingTier>
           <runtime> 
             <os>linux</os>  
             <javaVersion>java11</javaVersion>
