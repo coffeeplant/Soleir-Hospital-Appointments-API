@@ -8,16 +8,21 @@ http://localhost:8080/graphql
 The url for the deployed API is
 https://soleir-api.azurewebsites.net/graphql
 
-To view the functionality go to
+To view the functionality the front-end is available at:
 https://gray-pond-0f8811303.azurestaticapps.net/
 
 Iterations:
 https://github.com/coffeeplant/Soleir-Spring
 
-Rapid Construction Phase and production:
-https://github.com/coffeeplant/Soleir
+Rapid Construction Phase and production, please contact for access
+x10213198@student.ncirl.ie
+https://github.com/coffeeplant
 
 Front-end static website:
 https://github.com/coffeeplant/Soleir-Spring
+
+Please note: This project will not run without database access. If access
+is required, the firewall will need to be updated with the viewers IP address. 
+Please contact x10213198@student.ncirl.ie with the IP address.
 
 

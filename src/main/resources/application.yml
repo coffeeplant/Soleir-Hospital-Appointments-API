@@ -4,8 +4,8 @@ datasource:
   soleirdb:
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://dbserver1849.database.windows.net:1433;database=SoleirDB1;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;
-    username: soleiruser@dbserver1849
-    password: Elementshow859nature6863wife27now
+    username:
+    password:
     platform: mssql
     hikari:
       connection-timeout: 2000
@@ -13,8 +13,8 @@ datasource:
   hospdb:
     #driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://hospitaldb-soleir.mysql.database.azure.com:3306/hospdb?serverTimezone=UTC
-    username: coffeeplant@hospitaldb-soleir
-    password: Single60symbol12shop6570ofgas60
+    username:
+    password:
 
 #passwords to be made more complex
 spring:

@@ -14,9 +14,9 @@ import java.time.Duration;
 public class SecurityProperties {
 
     //these could be asked at start-up for additional security, don't need to be defined here
-    private final String tokenSecret = "Subjecteye63lead2580mainnine4558";
+    private final String tokenSecret = "";
 
-    private final String tokenIssuer = "soleir-graphql2";
+    private final String tokenIssuer = "";
 
     private final Duration tokenExpiration = Duration.ofHours(4);
 
