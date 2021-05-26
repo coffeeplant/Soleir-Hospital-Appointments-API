@@ -15,7 +15,7 @@ Iterations:
 https://github.com/coffeeplant/Soleir-Spring
 
 Rapid Construction Phase and production, please contact for access
-x10213198@student.ncirl.ie
+
 https://github.com/coffeeplant
 
 Front-end static website:
@@ -23,6 +23,6 @@ https://github.com/coffeeplant/Soleir-Spring
 
 Please note: This project will not run without database access. If access
 is required, the firewall will need to be updated with the viewers IP address. 
-Please contact x10213198@student.ncirl.ie with the IP address.
+
 
 
